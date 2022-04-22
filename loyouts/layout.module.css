@@ -1,0 +1,16 @@
+.navBar * {
+  margin-left: 1em;
+  color: white;
+  background: black;
+  padding: 1em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  display: inline-block;
+}
+
+.pageBody {
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+}
