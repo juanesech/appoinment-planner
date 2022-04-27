@@ -1,7 +1,16 @@
-const TileList = () => {
+import Tile from "./Tile";
+
+const TileList = ({objectArray}) => {
   return (
     <div>
-      Enter
+      {objectArray.map((item, index) => {
+        return (
+          <Tile
+            item={item}
+            key={index}
+          />
+        );
+      })}
     </div>
   );
 }

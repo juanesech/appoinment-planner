@@ -6,14 +6,14 @@ import TileList from "../components/TileList";
 const Contacts = () => {
 
   const [contacts, setContacts] = useState([]);
-  const addNewContact = (name, phoneNumber, email) => {
+  const addNewContact = (name, phone, email) => {
     setContacts((prev) => {
       return ([
         ...prev,
         {
-          name: name,
-          phone: phoneNumber,
-          email: email
+          name,
+          phone,
+          email
         }
       ])
     });
@@ -56,7 +56,7 @@ const Contacts = () => {
       setPhone('');
       return
     }
-    alert(`Contact with ${value.name} already exists.`)
+    alert(`Contact with name ${name} already exists.`)
   };
 
   return (
@@ -78,7 +78,7 @@ const Contacts = () => {
         <section>
           <h2>Contacts</h2>
           <TileList
-            contactArray={contacts}
+            objectArray={contacts}
           />
         </section>
       </div>
