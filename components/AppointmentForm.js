@@ -1,8 +1,9 @@
+import ContactPicker from "./ContactPicker";
+
 const AppointmentForm = ({
-  contacts,
+  contactsArray,
   title,
   setTitle,
-  contact,
   setContact,
   date,
   setDate,
@@ -18,7 +19,28 @@ const AppointmentForm = ({
   };
 
   return (
-    AppointmentForm
+    <form onSubmit={handleSubmit}>
+      <input type='text'
+        placeholder='title'
+        value={title}
+        onChange={setTitle}
+      />
+      <ContactPicker
+        contacts={contactsArray}
+        setContact={setContact}
+      />
+      <input type='date'
+        min={() => getTodayString}
+        value={date}
+        onChange={setDate}
+      />
+      <input type='time'
+        placeholder='time'
+        value={time}
+        onChange={setTime}
+      />
+      <input type='submit'/>
+    </form>
   );
 };
 

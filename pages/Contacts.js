@@ -5,7 +5,18 @@ import TileList from "../components/TileList";
 
 const Contacts = () => {
 
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState([
+    {
+      name: 'Juan',
+      phone: '664865692',
+      email: 'juanesech@gmail.com'
+    },
+    {
+      name: 'Evelyn',
+      phone: '674576318',
+      email: 'puerta.eve04@gmail.com'
+    }
+  ]);
   const addNewContact = (name, phone, email) => {
     setContacts((prev) => {
       return ([

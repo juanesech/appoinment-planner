@@ -1,6 +1,13 @@
-const ContactPicker = () => {
+const ContactPicker = ({contacts, setContact}) => {
   return (
-    ContactPicker
+    <select onChange={setContact}>
+      {contacts.forEach((contact, index) => {
+        <option
+          key={index}
+          value={contact.name}
+        >{contact.name}</option>
+      })}
+    </select>
   );
 };
 
