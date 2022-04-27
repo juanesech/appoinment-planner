@@ -6,25 +6,25 @@ import TileList from "../components/TileList";
 const Contacts = () => {
 
   const [contacts, setContacts] = useState([]);
-  const addNewContact = ({ name, phoneNumber, email }) => {
+  const addNewContact = (name, phoneNumber, email) => {
     setContacts((prev) => {
-      [
+      return ([
         ...prev,
         {
-          name,
-          phoneNumber,
-          email
+          name: name,
+          phone: phoneNumber,
+          email: email
         }
-      ]
+      ])
     });
   }
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
   const checkContactDuplicity = (name) => {
-    let exists = Contacts.find((contact) => contact.name === name);
+    let exists = contacts.find((contact) => contact.name === name);
     if (exists){
       console.log(`Contact with ${name} already exists.`);
       return true
@@ -32,12 +32,25 @@ const Contacts = () => {
     return false
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { value } = e.target;
-    
-    if (!checkContactDuplicity(value.name)){
-      addNewContact(value);
+  const handleNameChange = ({target}) => {
+    const value = target.value;
+    setName(value);
+  }
+
+  const handleEmailChange = ({target}) => {
+    const value = target.value;
+    setEmail(value);
+  }
+
+  const handlePhoneChange = ({target}) => {
+    const value = target.value;
+    setPhone(value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!checkContactDuplicity(name)){
+      addNewContact(name, phone, email);
       setName('');
       setEmail('');
       setPhone('');
@@ -55,6 +68,9 @@ const Contacts = () => {
             name={name}
             phone={phone}
             email={email}
+            setEmail={handleEmailChange}
+            setName={handleNameChange}
+            setPhone={handlePhoneChange}
             handleSubmit={handleSubmit}
           />
         </section>

@@ -8,7 +8,7 @@ const ContactForm = ({
   handleSubmit
 }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type='text'
         value={name}
@@ -30,7 +30,6 @@ const ContactForm = ({
       />
       <input
         type='submit'
-        onSubmit={handleSubmit}
       />
     </form>
   );
