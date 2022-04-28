@@ -1,21 +1,18 @@
 import Layout from "../loyouts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppointmentForm from "../components/AppointmentForm";
 import TileList from "../components/TileList";
+import { getContacts } from "../lib/fauna";
 
 const Appointments = () => {
-  let contacts = [
-    {
-      name: 'Juan',
-      phone: '664865692',
-      email: 'juanesech@gmail.com'
-    },
-    {
-      name: 'Evelyn',
-      phone: '674576318',
-      email: 'puerta.eve04@gmail.com'
+  const [contacts, setContacts] = useState([{}]);
+  useEffect(() => {
+    const fetchContacts = async () => {
+      const contactArray = await getContacts();
+      setContacts(contactArray);
     }
-  ];
+    fetchContacts();
+  }, []);
 
   const [appointments, setAppointments] = useState([]);
   const addNewAppointment = (title, contact, date, time) => {
