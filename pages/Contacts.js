@@ -1,23 +1,21 @@
 import Layout from "../loyouts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ContactForm from "../components/ContactForm";
 import TileList from "../components/TileList";
+import { saveNewContact, getContacts } from "../lib/fauna";
 
 const Contacts = () => {
-
-  const [contacts, setContacts] = useState([
-    {
-      name: 'Juan',
-      phone: '664865692',
-      email: 'juanesech@gmail.com'
-    },
-    {
-      name: 'Evelyn',
-      phone: '674576318',
-      email: 'puerta.eve04@gmail.com'
+  const [contacts, setContacts] = useState([{}]);
+  useEffect(() => {
+    const fetchContacts = async () => {
+      const contactArray = await getContacts();
+      setContacts(contactArray);
     }
-  ]);
+    fetchContacts();
+  }, []);
+
   const addNewContact = (name, phone, email) => {
+    saveNewContact({name, phone, email});
     setContacts((prev) => {
       return ([
         ...prev,
@@ -67,7 +65,7 @@ const Contacts = () => {
       setPhone('');
       return
     }
-    alert(`Contact with name ${name} already exists.`)
+    alert(`Contact with name ${name} already exists.`);
   };
 
   return (
