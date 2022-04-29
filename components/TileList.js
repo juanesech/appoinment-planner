@@ -1,6 +1,6 @@
 import Tile from "./Tile";
 
-const TileList = ({objectArray}) => {
+const TileList = ({objectArray, onDelete}) => {
   return (
     <div>
       {objectArray.map((item, index) => {
@@ -8,6 +8,7 @@ const TileList = ({objectArray}) => {
           <Tile
             item={item}
             key={index}
+            onDelete={onDelete}
           />
         );
       })}

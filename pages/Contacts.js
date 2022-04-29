@@ -2,7 +2,7 @@ import Layout from "../loyouts";
 import { useState, useEffect } from "react";
 import ContactForm from "../components/ContactForm";
 import TileList from "../components/TileList";
-import { saveNewContact, getContacts } from "../lib/fauna";
+import { saveNewContact, getContacts, deleteContact } from "../lib/fauna";
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([{}]);
@@ -56,6 +56,13 @@ const Contacts = () => {
     setPhone(value);
   }
 
+  const handleDelete = (contactId) => {
+    return async () => {
+      console.log(`ID: ${contactId}`);
+      return await deleteContact(contactId);
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!checkContactDuplicity(name)){
@@ -88,6 +95,7 @@ const Contacts = () => {
           <h2>Contacts</h2>
           <TileList
             objectArray={contacts}
+            onDelete={handleDelete}
           />
         </section>
       </div>

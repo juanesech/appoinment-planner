@@ -1,4 +1,9 @@
-const Tile = ({item}) => {
+const Tile = ({item, onDelete}) => {
+
+  const handleDelete = () => {
+    onDelete(item.id);
+  }
+
   return (
     <div className='tile-container'>
       {Object.values(item).map((element, index) => {
@@ -9,6 +14,7 @@ const Tile = ({item}) => {
           >{element}</p>
         );
       })}
+    <button onClick={handleDelete}>x</button>
     </div>
   );
 }
