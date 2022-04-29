@@ -30,7 +30,7 @@ const AppointmentForm = ({
         setContact={setContact}
       />
       <input type='date'
-        min={() => getTodayString}
+        min={getTodayString()}
         value={date}
         onChange={setDate}
       />

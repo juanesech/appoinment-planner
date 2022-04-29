@@ -1,7 +1,10 @@
 const ContactPicker = ({contacts, setContact}) => {
   return (
-    <select onChange={setContact}>
-      <option selected value="">Select a contact</option>
+    <select 
+      onChange={setContact}
+      defaultValue=""
+    >
+      <option value="">Select a contact</option>
       {contacts.map((contact, index) => {
         return (
         <option

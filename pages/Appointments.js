@@ -2,7 +2,7 @@ import Layout from "../loyouts";
 import { useState, useEffect } from "react";
 import AppointmentForm from "../components/AppointmentForm";
 import TileList from "../components/TileList";
-import { getContacts } from "../lib/fauna";
+import { getAppointments, getContacts, saveNewAppointment } from "../lib/fauna";
 
 const Appointments = () => {
   const [contacts, setContacts] = useState([{}]);
@@ -15,7 +15,16 @@ const Appointments = () => {
   }, []);
 
   const [appointments, setAppointments] = useState([]);
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      const appointmentArray = await getAppointments();
+      setAppointments(appointmentArray);
+    }
+    fetchAppointments();
+  }, []);
+
   const addNewAppointment = (title, contact, date, time) => {
+    saveNewAppointment({title, contact, date, time})
     setAppointments((prev) => {
       return ([
         ...prev,
